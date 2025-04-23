@@ -8,14 +8,14 @@ const createHTMLEmailList = (email) => {
 
 // *CREA FUNZIONE CHE GENERA TRAMITE API 10 EMAIL E LE AGGIUNGE NELL'HTML
 function fetchAndRenderEmails() {
-    for (let i = 0; i < 10; i++) {
-      axios.get(apiEmailUrl).then((response) => {
-          const userEmail = response.data.response;
-          emailEl.innerHTML += createHTMLEmailList(userEmail);
-        })
-    }
-  };
-  
+  for (let i = 0; i < 10; i++) {
+    axios.get(apiEmailUrl).then((response) => {
+      const userEmail = response.data.response;
+      emailEl.innerHTML += createHTMLEmailList(userEmail);
+    });
+  }
+}
+
 //* CHIAMO FUNZIONE DI GENERAZIONE EMAIL
 fetchAndRenderEmails();
 
@@ -26,7 +26,4 @@ generatEmailButton.addEventListener("click", function () {
   emailEl.innerHTML = ``;
   fetchAndRenderEmails();
 });
-
-
-
 
