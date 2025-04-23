@@ -1,16 +1,16 @@
 const emailEl = document.getElementById("email-list");
+const apiEmailUrl = `https://flynn.boolean.careers/exercises/api/random/mail`
 
-// funzione che aggiunge un'email alla lista
+// * FUNZIONE CHE AGGIUNGE UNA EMAIL ALLA LISTA
 const createHTMLEmailList = (email) => {
-    return `<li class="list-group-item">${email}/li>`
+    return `<li class="list-group-item">${email}</li>`
 };
 
-const apiEmailUrl = `https://flynn.boolean.careers/exercises/api/random/mail`
- 
-axios.get(apiEmailUrl)
-    .then(responsive => {
-        const utentEmail = responsive.data.response;
-        for(let i = 0; i < 10; i++){
-            emailEl.innerHTML += createHTMLEmailList(utentEmail);
-        }
-    });
+// * CICLO CHE GENERA TRAMITE API  10 EMAIL E LE AGGIUNGE NELL'HTML
+for(let i = 0; i < 10; i++){
+    axios.get(apiEmailUrl)
+        .then(response => {
+            const userEmail = response.data.response;
+            emailEl.innerHTML += createHTMLEmailList(userEmail);
+        });
+}
