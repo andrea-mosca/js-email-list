@@ -13,4 +13,19 @@ for(let i = 0; i < 10; i++){
             const userEmail = response.data.response;
             emailEl.innerHTML += createHTMLEmailList(userEmail);
         });
-}
+};
+
+// * bottone che generi altre 10 email in sostituzione delle altre
+const generatEmailButton = document.getElementById("generate-email-button");
+
+
+generatEmailButton.addEventListener("click",function() {
+    emailEl.innerHTML = ``;
+    for(let i = 0; i < 10; i++){
+        axios.get(apiEmailUrl)
+            .then(response => {
+                const userEmail = response.data.response;
+                emailEl.innerHTML += createHTMLEmailList(userEmail);
+            });
+    };
+  });
